@@ -8,7 +8,9 @@ import requests
 from pushover_credentials import TOKEN, USER
 import threading
 
-tz = pytz.timezone('Europe/Stockholm')
+wtapi = requests.get("http://worldtimeapi.org/api/ip")
+tz = pytz.timezone(wtapi.json()["timezone"])
+#tz = pytz.timezone('Europe/Stockholm')
 
 class EmlServer(SMTPServer):
     print('Ready!')
